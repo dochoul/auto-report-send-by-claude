@@ -12,7 +12,8 @@
    - 스크립트는 README.md·CLAUDE.md를 제외한 `.md` 파일 중 새로 추가되었거나
      내용이 변경된 것만 골라 SMTP로 발송한다 (이력: `sent-state.json`).
    - SMTP 자격증명은 환경변수(`HIWORKS_SMTP_HOST/PORT/USER/PASSWORD`)에서 읽는다.
-     수신자는 `REPORT_TO` (기본값 kiki@gabia.com).
+     수신자는 `REPORT_TO`, 쉼표로 여러 명 지정
+     (기본값 kiki@gabia.com,kimdy@gabia.com).
 
 2. 발송이 1건 이상 성공하면(`RESULT: sent=N`, N>0) `sent-state.json`이 갱신된다.
    **반드시 이 파일을 기본 브랜치(main)에 커밋하고 푸시하라.**

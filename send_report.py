@@ -6,8 +6,8 @@
 - 발송 이력은 저장소 루트의 sent-state.json(파일경로 -> 내용 해시)으로 관리한다.
   발송 후 이 파일을 커밋/푸시해야 다음 실행에서 중복 발송되지 않는다.
 - 필요한 환경변수: HIWORKS_SMTP_HOST, HIWORKS_SMTP_PORT, HIWORKS_SMTP_USER,
-  HIWORKS_SMTP_PASSWORD, (선택) REPORT_TO
-- 사용법: python3 send_report.py [--dry-run] [--to EMAIL]
+  HIWORKS_SMTP_PASSWORD, (선택) REPORT_TO (쉼표로 여러 명 지정 가능)
+- 사용법: python3 send_report.py [--dry-run] [--to EMAIL[,EMAIL...]]
 """
 import argparse
 import hashlib
@@ -62,7 +62,7 @@ def send_mail(env, to, subject, body):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="발송하지 않고 대상만 출력")
-    ap.add_argument("--to", default=os.environ.get("REPORT_TO", "kiki@gabia.com"))
+    ap.add_argument("--to", default=os.environ.get("REPORT_TO", "kiki@gabia.com,kimdy@gabia.com"))
     args = ap.parse_args()
 
     env = require_env()
